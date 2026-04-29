@@ -1,14 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meetings & Events | Dahican Beach Resort & Spa</title>
+  
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-white overflow-x-hidden">
   
+  <!-- Navbar -->
+  <nav class="absolute top-0 w-full z-50 p-6 flex justify-between items-center text-[#3c5134]">
+    <div>
+      <div class="text-2xl font-bold tracking-tight">DAHICAN<span class="text-[#e99c6d]">.</span></div>
+      <div class="text-[10px] uppercase tracking-[0.4em] font-medium opacity-80">Beach Resort & Spa</div>
+    </div>
+    <button class="md:hidden text-2xl focus:outline-none" id="openNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="hidden md:flex gap-8 font-medium text-sm uppercase tracking-widest">
+      <a href="../index.html" class="hover:text-[#e99c6d] transition">Home</a>
+      <a href="villas.html" class="hover:text-[#e99c6d] transition">Villas</a>
+      <a href="dining.html" class="hover:text-[#e99c6d] transition">Dining</a>
+      <a href="activities.html" class="hover:text-[#e99c6d] transition">Activities</a>
+      <a href="#" class="text-[#e99c6d]">Events</a>
+    </div>
+  </nav>
+  
+  <!-- Centralized & Wrapping Watermark Header -->
+  <header class="pt-32 pb-12 px-6 text-center" data-aos="fade-down">
+    <h1 class="max-w-4xl mx-auto text-5xl md:text-7xl font-bold text-[#f2d1b3] uppercase tracking-[0.2em] opacity-30 leading-tight break-words">
+      Meetings & Events
+    </h1>
+  </header>
+  
+  <!-- ================= EVENTS CONTENT ================= -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-12 space-y-32">
+    
+    <!-- 1. Meeting & Conference (Zigzag - Image Right) -->
+    <div class="flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
+      <div class="w-full md:w-1/2">
+        <h2 class="text-3xl font-bold text-[#e99c6d] mb-6">Meeting & Conference</h2>
+        <p class="text-slate-500 leading-relaxed">
+          Experience Elevated Asian Fusion Cuisine! Dine in a refined beachfront setting where flavors and ambiance come together. Dahican Beach Resort & Spa offers an exceptional culinary experience like no other. A guaranteed Php 500.00 table fee per person for walk-in guests, fully consumable on food and drinks.
+        </p>
+      </div>
+      <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+        <img src="/img/events/meeting-1.jpg" class="w-full h-80 object-cover rounded-[2rem] shadow-lg" alt="Meeting Hall">
+        <img src="/img/events/meeting-2.jpg" class="w-full h-80 object-cover rounded-[2rem] shadow-lg" alt="Speaker at Podium">
+      </div>
+    </div>
+    
+    <!-- 2. Large Feature Image (Functions) -->
+    <div class="w-full" data-aos="zoom-in">
+      <img src="/img/events/function-main.jpg" class="w-full h-[500px] object-cover rounded-[3rem] shadow-xl" alt="Main Function Area">
+    </div>
+    
+    <!-- 3. Wedding & Celebration (Zigzag - Image Right) -->
+    <div class="flex flex-col md:flex-row items-center gap-12" data-aos="fade-up">
+      <div class="w-full md:w-1/2">
+        <h2 class="text-3xl font-bold text-[#e99c6d] mb-6">Wedding & Celebration</h2>
+        <p class="text-slate-500 leading-relaxed">
+          A Beachfront Lounge & Bar offers a curated selection of cocktails, mocktails, wines, and probably local & imported beers. Perfect for sunset drinks, post-surf hangouts, or evening relaxation under the stars. Laid-back, cozy, and open-air with direct beach views.
+        </p>
+      </div>
+      <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+        <img src="/img/events/wedding-1.jpg" class="w-full h-80 object-cover rounded-[2rem] shadow-lg" alt="Beachfront Wedding Setup">
+        <img src="/img/events/wedding-2.jpg" class="w-full h-80 object-cover rounded-[2rem] shadow-lg" alt="Dinner Celebration">
+      </div>
+    </div>
+  </section>
+  
+  <!-- ================= BACK TO TOP BUTTON ================= -->
+  <button id="backToTop" class="fixed bottom-8 right-8 z-[90] bg-[#3c5134] text-[#e99c6d] w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-500 translate-y-20 opacity-0 hover:bg-[#4a6341] active:scale-95 border border-[#e99c6d]/20">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+  
+  <!-- Spacer for scrolling bottom -->
+  <div class="h-[15vh]"></div>
+  
+  <!-- [Insert Footer from index.html here] -->
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#3c5134] text-white py-16 px-6 md:px-16 mt-20">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Logo Area -->
+      <div class="mb-12" data-aos="fade-up">
+        <!-- Replace with your actual logo file -->
+        <div class="text-2xl font-bold tracking-tight">Dahican<span class="text-[#5a7350]">.</span></div>
+        <div class="text-xs uppercase tracking-[0.3em] font-medium opacity-80">Beach Resort & Spa</div>
+      </div>
+      
+      <!-- Links Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-20 max-w-2xl mb-16" data-aos="fade-up" data-aos-delay="100">
+        <!-- Left Column -->
+        <div class="flex flex-col gap-4">
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">The Resort</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Villas</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Dining</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Activities</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Amenities</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Meetings & Events</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Contact</a>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="flex flex-col gap-4">
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Privacy Policy</a>
+          <a href="#" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Contact</a>
+        </div>
+      </div>
+      
+      <!-- Social Icons & Copyright -->
+      <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex gap-6 text-2xl">
+          <a href="#" class="hover:text-[#5a7350] transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="hover:text-[#5a7350] transition"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="hover:text-[#5a7350] transition"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <p class="text-[10px] uppercase tracking-widest opacity-50">
+          &copy; 2026 Dahican Beach Resorts. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 
 </html>
