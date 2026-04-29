@@ -25,3 +25,31 @@ function toggleSidebar(isOpen) {
 openNav.addEventListener('click', () => toggleSidebar(true));
 closeNav.addEventListener('click', () => toggleSidebar(false));
 navOverlay.addEventListener('click', () => toggleSidebar(false));
+
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  // Calculate the total scrollable height
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  // Get current scroll position
+  const scrolled = window.scrollY;
+  
+  // Check if user has scrolled 70% of the page
+  if (scrolled / scrollableHeight > 0.5) {
+    // Show button
+    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+  } else {
+    // Hide button
+    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+  }
+});
+
+// Smooth scroll to top when clicked
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
