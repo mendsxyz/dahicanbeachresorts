@@ -26,7 +26,7 @@
       <div class="text-2xl font-bold tracking-tight">Dahican<span class="text-[#5a7350]">.</span></div>
       <div class="text-xs uppercase tracking-[0.3em] font-medium opacity-80">Beach Resort & Spa</div>
     </div>
-    <button class="md:hidden text-2xl focus:outline-none">
+    <button class="md:hidden text-2xl focus:outline-none" id="openNav">
       <i class="fa-solid fa-bars"></i>
     </button>
     <div class="hidden md:flex gap-8 font-medium">
@@ -51,6 +51,39 @@
       </p>
     </div>
   </header>
+  
+  <!-- ================= MOBILE/TABLET SIDEBAR ================= -->
+  <div id="sideNav" class="fixed inset-0 z-[100] invisible">
+    <!-- Backdrop Overlay -->
+    <div id="navOverlay" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-500"></div>
+    
+    <!-- Sidebar Content -->
+    <!-- w-full on mobile, w-[30%] on tablet (sm:), hidden on desktop (md:) -->
+    <aside id="navContent" class="absolute top-0 right-0 h-full w-full sm:w-[40%] md:hidden bg-[#3c5134] p-10 flex flex-col translate-x-full transition-transform duration-500 ease-in-out shadow-2xl">
+      
+      <!-- Close Button -->
+      <button id="closeNav" class="self-end text-[#f2d1b3] text-3xl mb-12 hover:rotate-90 transition-transform duration-300">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Navigation Links -->
+      <nav class="flex flex-col gap-8">
+        <a href="#" class="text-[#e99c6d] text-2xl font-serif tracking-tight border-b border-white/10 pb-2">The Resort</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Villas</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Dining</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Activities</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Amenities</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Meetings & Events</a>
+        <a href="#" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Contact</a>
+      </nav>
+      
+      <!-- Branding at bottom of nav -->
+      <div class="mt-auto pt-10 border-t border-white/10">
+        <p class="text-[#e99c6d] font-serif text-lg">Dahican</p>
+        <p class="text-[#f2d1b3] text-[10px] uppercase tracking-[0.3em] opacity-60">Beach Resort & Spa</p>
+      </div>
+    </aside>
+  </div>
   
   <!-- ================= BOOKING WIDGET ================= -->
   <!-- Positioned to overlap the hero section slightly on desktop, standard block on mobile -->
@@ -399,6 +432,7 @@
   </footer>
   
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="/helpers/main.js"></script>
   <script>
     AOS.init({
       once: true,
