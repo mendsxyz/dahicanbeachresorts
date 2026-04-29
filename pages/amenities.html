@@ -28,6 +28,9 @@
       <a href="villas.html" class="hover:text-[#e99c6d] transition">Villas</a>
       <a href="dining.html" class="hover:text-[#e99c6d] transition">Dining</a>
       <a href="#" class="text-[#e99c6d]">Amenities</a>
+      <a href="activities.html" class="hover:text-[#e99c6d] transition">Activities</a>
+      <a href="meetingsandevents.html" class="hover:text-[#e99c6d] transition">Events</a>
+      <a href="contact.html" class="hover:text-[#e99c6d] transition">Contact</a>
     </div>
   </nav>
   
@@ -35,6 +38,39 @@
   <header class="pt-32 pb-12 text-center" data-aos="fade-down">
     <h1 class="text-5xl md:text-7xl font-bold text-[#f2d1b3] uppercase tracking-[0.2em] opacity-40">Amenities</h1>
   </header>
+  
+  <!-- ================= MOBILE/TABLET SIDEBAR ================= -->
+  <div id="sideNav" class="fixed inset-0 z-[100] invisible">
+    <!-- Backdrop Overlay -->
+    <div id="navOverlay" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-500"></div>
+    
+    <!-- Sidebar Content -->
+    <!-- w-full on mobile, w-[30%] on tablet (sm:), hidden on desktop (md:) -->
+    <aside id="navContent" class="absolute top-0 right-0 h-full w-full sm:w-[40%] md:hidden bg-[#3c5134] p-10 flex flex-col translate-x-full transition-transform duration-500 ease-in-out shadow-2xl">
+      
+      <!-- Close Button -->
+      <button id="closeNav" class="self-end text-[#f2d1b3] text-3xl mb-12 hover:rotate-90 transition-transform duration-300">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Navigation Links -->
+      <nav class="flex flex-col gap-8">
+        <a href="../index.html" class="text-[#f2d1b3] text-2xl font-serif tracking-tight border-b border-white/10 pb-2">The Resort</a>
+        <a href="villas.html" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Villas</a>
+        <a href="dining.html" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Dining</a>
+        <a href="activities.html" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Activities</a>
+        <a href="#" class="text-[#e99c6d] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Amenities</a>
+        <a href="meetingsandevents.html" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Meetings & Events</a>
+        <a href="contact.html" class="text-[#f2d1b3] text-xl uppercase tracking-widest font-bold hover:text-[#e99c6d] transition">Contact</a>
+      </nav>
+      
+      <!-- Branding at bottom of nav -->
+      <div class="mt-auto pt-10 border-t border-white/10">
+        <p class="text-[#e99c6d] font-serif text-lg">Dahican</p>
+        <p class="text-[#f2d1b3] text-[10px] uppercase tracking-[0.3em] opacity-60">Beach Resort & Spa</p>
+      </div>
+    </aside>
+  </div>
   
   <!-- ================= AMENITIES CONTENT ================= -->
   <section class="max-w-7xl mx-auto px-6 md:px-16 py-12 space-y-20">
@@ -142,10 +178,9 @@
   </footer>
   
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../helpers/main.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-    
-    // Include the Sidebar Toggle Script from index.html here to ensure the Menu works!
   </script>
 </body>
 
