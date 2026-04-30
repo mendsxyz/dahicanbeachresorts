@@ -7,6 +7,7 @@
   <title>Dahican Beach Resorts</title>
   
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favivon.jpg">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,6 +17,12 @@
   
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <style type="text/tailwindcss">
+    .swiper-slide {
+      @apply min-h-[500px] md:min-h-fit;
+    }
+  </style>
 </head>
 
 <body class="bg-slate-50">
@@ -153,7 +160,7 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="flex items-start md:items-center gap-4 flex-wrap bg-white p-3 rounded-2xl border border-slate-100 shadow-sm hover:border-sky-200 transition-colors">
             <img src="/img/dining/dining1.jpg" class="w-full h-[100px] md:w-12 md:h-12 rounded-lg object-cover" alt="Breakfast">
-            <span class="text-sm font-bold text-slate-700">Free Daily Breakfast</span>
+            <span class="text-sm font-bold text-slate-700">Free Breakfast</span>
           </div>
           <div class="flex items-start md:items-center gap-4 flex-wrap bg-white p-3 rounded-2xl border border-slate-100 shadow-sm">
             <img src="/img/interior2.jpg" class="w-full h-[100px] md:w-12 md:h-12 rounded-lg object-cover" alt="Dinner">
@@ -164,7 +171,7 @@
             <span class="text-sm font-bold text-slate-700">Beach Access</span>
           </div>
           <div class="flex items-start md:items-center gap-4 flex-wrap bg-white p-3 rounded-2xl border border-slate-100 shadow-sm">
-            <img src="/img/pool.jpg" class="w-full h-[100px] md:w-12 md:h-12 rounded-lg object-cover" alt="Pool">
+            <img src="/img/amenities/pool.jpg" class="w-full h-[100px] md:w-12 md:h-12 rounded-lg object-cover" alt="Pool">
             <span class="text-sm font-bold text-slate-700">Infinity Pool</span>
           </div>
           <div class="flex items-start md:items-center gap-4 flex-wrap bg-white p-3 rounded-2xl border border-slate-100 shadow-sm">
@@ -248,29 +255,29 @@
     </div>
     
     <!-- Swiper Container -->
-    <div class="w-full h-[73vh] md:h-auto overflow-x-hidden">
+    <div class="w-full h-[77vh] md:h-auto overflow-x-hidden">
       <div class="swiper roomSwiper overflow-visible">
         <div class="swiper-wrapper">
           
           <!-- Room Slide 1 -->
           <div class="swiper-slide bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-shadow duration-300">
             <div class="relative h-64">
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Deluxe Ocean Room">
+              <img src="/img/villas/privatevilla1.jpg" class="w-full h-full object-cover" alt="Deluxe Ocean Room">
               <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-800">
                 <i class="fa-solid fa-expand mr-1 text-[#5a7350]"></i> 45 m²
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-900 mb-2">Deluxe Ocean View</h3>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Dahican Private Villa</h3>
               <div class="flex flex-wrap gap-3 mb-6 text-xs text-slate-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-wifi text-[#5a7350]"></i> Free WiFi</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-snowflake text-[#5a7350]"></i> AC</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-user text-[#5a7350]"></i> 7-8 Guests</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-snowflake text-[#5a7350]"></i>+<i class="fa-solid fa-wifi text-[#5a7350]"></i> AC & Free WiFi</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-tv text-[#5a7350]"></i> Smart TV</span>
               </div>
               <div class="flex justify-between items-center pt-4 border-t border-slate-50">
                 <div>
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
-                  <p class="text-xl font-bold text-[#5a7350]">$199<span class="text-sm font-normal text-slate-400">/night</span></p>
+                  <p class="text-xl font-bold text-[#5a7350]">₱15,000<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
                 <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
@@ -283,22 +290,22 @@
           <!-- Room Slide 2 -->
           <div class="swiper-slide bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
             <div class="relative h-64">
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Beachfront Villa">
+              <img src="/img/villas/loft1.jpg" class="w-full h-full object-cover" alt="Beachfront Villa">
               <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-800">
                 <i class="fa-solid fa-expand mr-1 text-[#5a7350]"></i> 120 m²
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-900 mb-2">Private Pool Villa</h3>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Dahican Loft</h3>
               <div class="flex flex-wrap gap-3 mb-6 text-xs text-slate-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-water-ladder text-[#5a7350]"></i> Private Pool</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-utensils text-[#5a7350]"></i> Kitchen</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-user text-[#5a7350]"></i> 10 Guests</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-water ladder text-[#5a7350]"></i> Private Pool</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-bell-concierge text-[#5a7350]"></i> Butler</span>
               </div>
               <div class="flex justify-between items-center pt-4 border-t border-slate-50">
                 <div>
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
-                  <p class="text-xl font-bold text-[#5a7350]">$450<span class="text-sm font-normal text-slate-400">/night</span></p>
+                  <p class="text-xl font-bold text-[#5a7350]">₱20,500<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
                 <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
@@ -311,22 +318,22 @@
           <!-- Room Slide 3 -->
           <div class="swiper-slide bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
             <div class="relative h-64">
-              <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Family Suite">
+              <img src="/img/villas/3bed1.jpg" class="w-full h-full object-cover" alt="Family Suite">
               <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-800">
                 <i class="fa-solid fa-expand mr-1 text-[#5a7350]"></i> 85 m²
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-900 mb-2">Family Sunset Suite</h3>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">3-Bedroom Villa</h3>
               <div class="flex flex-wrap gap-3 mb-6 text-xs text-slate-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-bed text-[#5a7350]"></i> 2 Bedrooms</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-user text-[#5a7350]"></i> 13-15 Guests</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-bath text-[#5a7350]"></i> Spa Bath</span>
                 <span class="flex items-center gap-1"><i class="fa-solid fa-couch text-[#5a7350]"></i> Lounge</span>
               </div>
               <div class="flex justify-between items-center pt-4 border-t border-slate-50">
                 <div>
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
-                  <p class="text-xl font-bold text-[#5a7350]">$320<span class="text-sm font-normal text-slate-400">/night</span></p>
+                  <p class="text-xl font-bold text-[#5a7350]">₱29,000<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
                 <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
@@ -363,8 +370,8 @@
       
       <!-- Image Collage -->
       <div class="w-full md:w-1/2 space-y-4">
-        <img src="/img/frontdesk.jpg" class="w-full h-64 object-cover rounded-2xl shadow-md" alt="Interiors 1">
-        <img src="/img/pool.jpg" class="w-full h-64 object-cover rounded-2xl shadow-md" alt="Interiors 2">
+        <img src="/img/amenities/pool.jpg" class="w-full h-64 object-cover rounded-2xl shadow-md" alt="Interiors 1">
+        <img src="/img/villas/privatevilla3.jpg" class="w-full h-64 object-cover rounded-2xl shadow-md" alt="Interiors 2">
       </div>
     </div>
     
