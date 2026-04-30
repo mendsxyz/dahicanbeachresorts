@@ -82,3 +82,16 @@ body {
 .swiper-pagination-active-main {
     background: #e99c6d !important;
 }
+
+#room-results > div:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+#room-results h4:first-of-type {
+    margin-top: 0 !important;
+}
+
+.roomhtml:last-child {
+    border: 0;
+}

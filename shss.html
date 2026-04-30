@@ -1,0 +1,51 @@
+<div class="bg-white rounded-2xl md:rounded-full shadow-soft p-4 md:p-3 flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-stretch">
+  
+  <!-- Location (Read Only for this resort) -->
+  <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 cursor-pointer">
+    <i class="fa-solid fa-location-dot text-[#5a7350] text-xl w-8"></i>
+    <div class="w-full">
+      <p class="text-sm font-bold text-slate-800">Location</p>
+      <input type="hidden" name="location" value="Dahican Beach Resorts">
+      <p class="text-xs text-slate-500 mt-1 flex justify-between items-center w-full uppercase tracking-tighter">Dahican, Mati City</p>
+    </div>
+  </div>
+  
+  <!-- Check In -->
+  <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
+    <i class="fa-regular fa-calendar text-[#5a7350] text-xl w-8"></i>
+    <div class="w-full">
+      <p class="text-sm font-bold text-slate-800">Check In</p>
+      <input type="date" id="checkin" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+      <p id="checkin-label" class="text-xs text-slate-500 mt-1 flex justify-between items-center w-full">Select Date <i class="fa-solid fa-chevron-down ml-2"></i></p>
+    </div>
+  </div>
+  
+  <!-- Check Out -->
+  <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
+    <i class="fa-regular fa-calendar text-[#5a7350] text-xl w-8"></i>
+    <div class="w-full">
+      <p class="text-sm font-bold text-slate-800">Check Out</p>
+      <input type="date" id="checkout" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+      <p id="checkout-label" class="text-xs text-slate-500 mt-1 flex justify-between items-center w-full">Select Date <i class="fa-solid fa-chevron-down ml-2"></i></p>
+    </div>
+  </div>
+  
+  <!-- Guests -->
+  <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-transparent relative cursor-pointer">
+    <i class="fa-regular fa-user text-[#5a7350] text-xl w-8"></i>
+    <div class="w-full">
+      <p class="text-sm font-bold text-slate-800">Guests</p>
+      <select id="guest-select" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+        <option value="1 Adult">1 Adult</option>
+        <option value="2 Adults" selected>2 Adults</option>
+        <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
+        <option value="Family Pack">Family Pack (4+)</option>
+      </select>
+      <p id="guest-label" class="text-xs text-slate-500 mt-1 flex justify-between items-center w-full">2 Adults <i class="fa-solid fa-chevron-down ml-2"></i></p>
+    </div>
+  </div>
+  
+  <button id="search-trigger" class="bg-[#3c5134] hover:bg-[#5a7350] text-white font-bold py-4 md:py-3 px-8 rounded-xl md:rounded-full transition-colors w-full md:w-auto mt-2 md:mt-0 flex items-center justify-center shadow-lg">
+    <i class="fa-solid fa-magnifying-glass mr-2"></i> Search
+  </button>
+</div>
