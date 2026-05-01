@@ -264,7 +264,7 @@ function renderRooms() {
             </div>
 
             <div class="flex gap-3">
-              <button onclick="confirmAndProceed()" class="px-8 py-2 bg-[#c5a985] text-white rounded-lg text-sm font-bold shadow-lg shadow-[#c5a985]/20 hover:bg-[#b39674] transition">SELECT ROOM</button>
+              <button onclick="triggerRoomSelection('${room.name}')" class="px-8 py-2 bg-[#c5a985] text-white rounded-lg text-sm font-bold shadow-lg shadow-[#c5a985]/20 hover:bg-[#b39674] transition">SELECT ROOM</button>
             </div>
           </div>
         </div>
@@ -298,7 +298,7 @@ function closeWarningModal() {
 
 // 3. The "I Understand" button action
 function confirmAndProceed() {
-  // closeWarningModal();
+  closeWarningModal();
   updateSummary();
   goToStep(3); // Now finally move to Guest Details
 }
@@ -430,10 +430,11 @@ function updateSummary() {
   const grandTotalEl = document.querySelector('#step-3-content .text-\\[\\#c5a985\\]');
   if (grandTotalEl) grandTotalEl.innerText = formattedTotal;
   
+  /*
   const displayEmail = JSON.parse(localStorage.getItem("guestInfo") || "[]").find(obj => obj.email && obj.email !== undefined)?.email;
-  
   // Also update your displayEmail variable if you use it globally
   window.currentDisplayEmail = displayEmail;
+  */
   
   // Update the Guest email field 
   updateUI();
@@ -468,7 +469,8 @@ function updateUI() {
   window.currentDisplayLname = displayLname;
   window.currentDisplayEmail = displayEmail;
   window.currentDisplayPhoneNo = displayPhoneNo;
-  window.currentDisplaySpecialReq = displaySpecialReq;*/
+  window.currentDisplaySpecialReq = displaySpecialReq;
+  */
 }
 
 function selectPayment(type) {
@@ -519,6 +521,9 @@ document.getElementById('payment-upload').addEventListener('change', function(e)
   }
 });
 
+// Script Url
+const scriptUrl = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ1GJ8nj0QXAm92GPdAgwxdoNPjOoUg1WfqzH2P8neX_NoA2X/exec";
+
 async function handleFinalSubmission() {
   const fileInput = document.getElementById('payment-upload');
   const btn = document.getElementById('submit-booking-btn');
@@ -531,9 +536,6 @@ async function handleFinalSubmission() {
   // UI Loading State
   btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Processing...';
   btn.disabled = true;
-  
-  // Script Url
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ1GJ8nj0QXAm92GPdAgwxdoNPjOoUg1WfqzH2P8neX_NoA2X/exec";
   
   try {
     // 1. Upload to Cloudinary
@@ -563,44 +565,67 @@ async function handleFinalSubmission() {
       timestamp: new Date().toLocaleString()
     };
     
-    // console.log("Data ready for Sheets:", bookingData);
-    
-    /* 3. Upload Data to Backend
-    const formData2 = new FormData();
-    formData2.append("timestamp", bookingData.timestamp);
-    formData2.append("booking_id", bookingData.bookingId);
-    formData2.append("guest_name", bookingData.guestName || "Anonymous");
-    formData2.append("guest_email", bookingData.guestEmail || "No email");
-    formData2.append("guest_phone_no", bookingData.guestPhoneNo || "No phone");
-    formData2.append("guest_special_req", bookingData.guestSpecialReq || "No special requests");
-    formData2.append("room", bookingData.room);
-    formData2.append("check_in", bookingData.checkin);
-    formData2.append("check_out", bookingData.checkout);
-    formData2.append("total", bookingData.total);
-    formData2.append("proof_url", bookingData.proofOfPayment);
-    
-    const res = await fetch(scriptUrl, {
-      method: 'POST',
-      body: formData2,
-    });
-    
-    if (!res.ok) {
-      throw new Error(`HTTP Error: ${res.status}`);
+    if (uploadData.secure_url) {
+      alert("Payment proof has been uploaded successfully!");
+      sendToBackend(bookingData, btn);
     }
-    
-    const data = await res.json();
-    
-    if (data.status === 'success') {
-      alert("Uploaded to backend!");
-    }
-    */
-    alert("Payment Submitted Successfully! We will verify your booking shortly.");
-    btn.innerHTML = 'Submitted Successfully';
-    
   } catch (error) {
     console.error("Upload failed:", error);
     alert("Upload failed. Please try again.");
     btn.disabled = false;
     btn.innerText = "Submit Proof of Payment";
+  }
+}
+
+async function sendToBackend(data, btnEl) {
+  const formData2 = new FormData();
+  
+  formData2.append("timestamp", data.timestamp || "");
+  formData2.append("booking_id", data.bookingId || "");
+  formData2.append("guest_name", data.guestName || "Anonymous");
+  formData2.append("guest_email", data.guestEmail || "No email");
+  formData2.append("guest_phone_no", data.guestPhone || "No phone");
+  formData2.append("guest_special_req", data.guestSpecialReq || "No special requests");
+  formData2.append("room", data.room || "");
+  formData2.append("check_in", data.checkin || "");
+  formData2.append("check_out", data.checkout || "");
+  formData2.append("total", data.total || "");
+  formData2.append("proof_url", data.proofOfPayment || "");
+  
+  const res = await fetch(scriptUrl, {
+    method: "POST",
+    body: formData2
+  });
+  
+  if (!res.ok) {
+    throw new Error(`HTTP Error: ${res.status}`);
+  }
+  
+  const beData = await res.json();
+  
+  if (beData.status === 'success') {
+    alert("Booking details submitted successfully! We will verify shortly...");
+    btnEl.innerHTML = 'Submitted Successfully';
+    btnEl.disabled = true;
+    
+    const paymentStatusIcon = document.getElementById("payment-status-icon");
+    const paymentStatus = document.getElementById("payment-status");
+    const paymentStatusDesc = document.getElementById("payment-status-desc");
+    
+    const circle = document.querySelector('[data-step="5"] .step-circle');
+    const label = circle?.nextElementSibling;
+    
+    if (circle && label) {
+      circle.classList.add('bg-[#3c5134]', 'text-white');
+      circle.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
+      label.classList.add('text-[#3c5134]', 'font-medium');
+    }
+    
+    if (paymentStatusIcon && paymentStatus && paymentStatusDesc) {
+      paymentStatusIcon.classList.add("bg-slate-300", "text-slate-500", "shadow-none");
+      paymentStatusIcon.innerHTML = `<i class="fa-solid fa-check"></i>`;
+      paymentStatus.innerText = "Submitted";
+      paymentStatusDesc.innerText = "Your proof of payment and booking details are currently being verified, and a receipt will be sent to your email address soon.";
+    }
   }
 }

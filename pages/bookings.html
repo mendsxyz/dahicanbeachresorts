@@ -330,11 +330,11 @@
   <div id="step-5-content" class="booking-tab-content hidden max-w-2xl mx-auto px-4 pb-20">
     <!-- Status Header -->
     <div class="text-center mb-8">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-amber-400 rounded-full text-white text-3xl mb-4 shadow-lg shadow-amber-200">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-amber-400 rounded-full text-white text-3xl mb-4 shadow-lg shadow-amber-200" id="payment-status-icon">
         <i class="fa-regular fa-clock"></i>
       </div>
-      <h2 class="text-3xl text-slate-800">Payment Pending</h2>
-      <p class="text-sm text-slate-500 mt-2">Please upload your proof of payment to complete your reservation.</p>
+      <h2 class="text-3xl text-slate-800" id="payment-status">Payment Pending</h2>
+      <p class="text-sm text-slate-500 mt-2" id="payment-status-desc">Please upload your proof of payment to complete your reservation.</p>
     </div>
     
     <!-- Booking Summary Table -->
@@ -371,7 +371,7 @@
     </button>
     
     <!-- Verification Note -->
-    <div class="bg-slate-50 p-6 rounded-xl text-center mb-8 border border-slate-100">
+    <div class="bg-slate-50 p-6 rounded-xl text-center mt-8 border border-slate-100">
       <p class="text-xs text-slate-500 leading-relaxed">Your reservation will be confirmed once we verify your payment. This usually takes a few minutes.</p>
     </div>
     
