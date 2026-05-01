@@ -102,8 +102,8 @@
       
       <!-- Mobile rows separated by borders -->
       <!-- Location (Read Only for this resort) -->
-      <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 cursor-pointer">
-        <i class="fa-solid fa-location-dot text-[#5a7350] text-xl w-8"></i>
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 cursor-pointer">
+        <i class="fa-solid fa-location-dot text-[#5a7350] text-lg w-8"></i>
         <div class="w-full">
           <p class="text-sm font-bold text-slate-800">Location</p>
           <input type="hidden" name="location" value="Dahican Beach Resorts">
@@ -112,8 +112,8 @@
       </div>
       
       <!-- Check In -->
-      <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
-        <i class="fa-regular fa-calendar text-[#5a7350] text-xl w-8"></i>
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
+        <i class="fa-regular fa-calendar text-[#5a7350] text-lg w-8"></i>
         <div class="w-full">
           <p class="text-sm font-bold text-slate-800">Check In</p>
           <input type="date" id="checkin" class="absolute inset-0 opacity-0 cursor-pointer z-10">
@@ -122,8 +122,8 @@
       </div>
       
       <!-- Check Out -->
-      <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
-        <i class="fa-regular fa-calendar text-[#5a7350] text-xl w-8"></i>
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative group cursor-pointer">
+        <i class="fa-regular fa-calendar text-[#5a7350] text-lg w-8"></i>
         <div class="w-full">
           <p class="text-sm font-bold text-slate-800">Check Out</p>
           <input type="date" id="checkout" class="absolute inset-0 opacity-0 cursor-pointer z-10">
@@ -131,18 +131,45 @@
         </div>
       </div>
       
-      <!-- Guests -->
-      <div class="flex-1 flex items-center px-4 py-3 border-b md:border-b-0 md:border-transparent relative cursor-pointer">
-        <i class="fa-regular fa-user text-[#5a7350] text-xl w-8"></i>
+      <!-- Adults -->
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative cursor-pointer">
+        <i class="fa-solid fa-users text-[#5a7350] text-md w-8 mt-1"></i>
         <div class="w-full">
-          <p class="text-sm font-bold text-slate-800">Guests</p>
-          <select id="guest-select" class="absolute inset-0 opacity-0 cursor-pointer z-10">
-            <option value="1 Adult">1 Adult</option>
-            <option value="2 Adults" selected>2 Adults</option>
-            <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
-            <option value="Family Pack">Family Pack (4+)</option>
+          <p class="text-xs font-bold text-slate-800 uppercase tracking-tight">Adults</p>
+          <select id="adults" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
           </select>
-          <p id="guest-label" class="text-xs text-slate-500 mt-1 flex justify-between items-center w-full">2 Adults <i class="fa-solid fa-chevron-down ml-2"></i></p>
+          <p id="adults-label" class="text-sm text-slate-500 mt-1 flex justify-between items-center w-full">2 <i class="fa-solid fa-chevron-down text-[10px]"></i></p>
+        </div>
+      </div>
+      
+      <!-- Children -->
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-r border-gray-100 relative cursor-pointer">
+        <i class="fa-solid fa-child text-[#5a7350] text-xl w-8"></i>
+        <div class="w-full">
+          <p class="text-xs font-bold text-slate-800 uppercase tracking-tight">Children</p>
+          <select id="children" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <p id="children-label" class="text-sm text-slate-500 mt-1 flex justify-between items-center w-full">0 <i class="fa-solid fa-chevron-down text-[10px]"></i></p>
+        </div>
+      </div>
+      
+      <!-- Rooms -->
+      <div class="flex-1 flex items-start px-4 py-3 border-b md:border-b-0 md:border-transparent relative cursor-pointer">
+        <i class="fa-solid fa-door-open text-[#5a7350] text-md mt-1 w-8"></i>
+        <div class="w-full">
+          <p class="text-xs font-bold text-slate-800 uppercase tracking-tight">Rooms</p>
+          <select id="rooms-count" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <p id="rooms-label" class="text-sm text-slate-500 mt-1 flex justify-between items-center w-full">1 <i class="fa-solid fa-chevron-down text-[10px]"></i></p>
         </div>
       </div>
       
@@ -155,8 +182,8 @@
         <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[2rem] overflow-hidden shadow-2xl flex flex-col" data-aos="zoom-in">
           <!-- Modal Header -->
           <div class="p-6 border-b flex justify-between items-center bg-[#3c5134] text-white">
-            <h3 class="text-md font-bold uppercase tracking-widest">All Rooms Are Available</h3>
-            <!--button id="close-modal" class="text-2xl hover:rotate-90 transition-transform">&times;</button-->
+            <h3 class="text-md font-bold uppercase tracking-widest">Available Rooms</h3>
+            <button id="close-modal" class="text-2xl hover:rotate-90 transition-transform"><i class="fas fa-times"></i></button>
           </div>
           
           <!-- Modal Body (Room List) -->
@@ -254,7 +281,8 @@
               Reservations are on a first-to-pay, first-served basis.
             </li>
           </ul>
-          <button class="w-full mt-8 bg-[#e99c6d] hover:bg-[#e99c6d]/30 text-white font-bold py-4 rounded-xl transition-all">
+          <button class="w-full mt-8 bg-[#e99c6d] hover:bg-[#e99c6d]/30 text-white font-bold py-4 rounded-xl transition-all"
+          onclick="gotoBooking()">
             Confirm Reservation
           </button>
         </div>
@@ -301,7 +329,8 @@
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
                   <p class="text-xl font-bold text-[#5a7350]">₱6,000<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
-                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
+                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors" 
+                onclick="gotoBooking()">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
                   <span class="hidden md:block">Book room</span>
                 </button>
@@ -329,7 +358,8 @@
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
                   <p class="text-xl font-bold text-[#5a7350]">₱8,300<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
-                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
+                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors" 
+                onclick="gotoBooking()">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
                   <span class="hidden md:block">Book room</span>
                 </button>
@@ -357,7 +387,8 @@
                   <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">Starting from</p>
                   <p class="text-xl font-bold text-[#5a7350]">₱13,000<span class="text-sm font-normal text-slate-400">/night</span></p>
                 </div>
-                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors">
+                <button class="bg-[#3c5134] text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-sky-500 transition-colors"
+                onclick="gotoBooking()">
                   <i class="fas fa-chevron-right text-md md:hidden"></i>
                   <span class="hidden md:block">Book room</span>
                 </button>
@@ -444,7 +475,6 @@
           <a href="./pages/activities.html" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Activities</a>
           <a href="./pages/amenities.html" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Amenities</a>
           <a href="./pages/meetingsandevents.html" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Meetings & Events</a>
-          <a href="./pages/contact.html" class="uppercase tracking-widest text-sm font-bold hover:text-[#5a7350] transition">Contact</a>
         </div>
         
         <!-- Right Column -->
@@ -512,6 +542,10 @@
         }
       }
     });
+    
+    function gotoBooking() {
+      window.location.href = "./pages/bookings.html";
+    }
   </script>
 </body>
 
