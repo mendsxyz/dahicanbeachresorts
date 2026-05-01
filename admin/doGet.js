@@ -1,3 +1,4 @@
+/*
 function doGet() {
   const ss = SpreadsheetApp.openById(
     "1CyRRIz4GliqoK21AQO9jbqOupCDXvxEy6QItQHIRN3s"
@@ -16,4 +17,4 @@ function doGet() {
   return ContentService
     .createTextOutput(JSON.stringify(formatted))
     .setMimeType(ContentService.MimeType.JSON);
-}
+}*/

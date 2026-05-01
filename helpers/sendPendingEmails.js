@@ -1,3 +1,4 @@
+/*
 function sendPendingEmails() {
   try {
     const ss = SpreadsheetApp.openById(
@@ -42,4 +43,4 @@ function sendPendingEmails() {
   } catch (err) {
     console.log(err);
   }
-}
+}*/

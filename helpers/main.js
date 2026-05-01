@@ -264,7 +264,7 @@ function renderRooms() {
             </div>
 
             <div class="flex gap-3">
-              <button onclick="triggerRoomSelection('${room.name}')" class="px-8 py-2 bg-[#c5a985] text-white rounded-lg text-sm font-bold shadow-lg shadow-[#c5a985]/20 hover:bg-[#b39674] transition">SELECT ROOM</button>
+              <button onclick="confirmAndProceed()" class="px-8 py-2 bg-[#c5a985] text-white rounded-lg text-sm font-bold shadow-lg shadow-[#c5a985]/20 hover:bg-[#b39674] transition">SELECT ROOM</button>
             </div>
           </div>
         </div>
@@ -273,7 +273,7 @@ function renderRooms() {
     
     setTimeout(() => {
       container.insertAdjacentHTML('beforeend', cardHTML);
-    }, 1000);
+    }, 100);
   });
 }
 
@@ -292,12 +292,13 @@ function triggerRoomSelection(roomName) {
 function closeWarningModal() {
   const modal = document.getElementById('payment-warning-modal');
   modal.classList.add('hidden');
+  modal.classList.remove('flex');
   document.body.style.overflow = 'auto';
 }
 
 // 3. The "I Understand" button action
 function confirmAndProceed() {
-  closeWarningModal();
+  // closeWarningModal();
   updateSummary();
   goToStep(3); // Now finally move to Guest Details
 }
@@ -314,7 +315,7 @@ function saveGuestInfo() {
   const currentLname = lnameInput ? lnameInput.value.trim() : "";
   const currentEmail = emailInput ? emailInput.value.trim() : "";
   const currentPhoneNo = phoneNoInput ? phoneNoInput.value.trim() : "";
-  const currentSpecialReq = specialReqInput ? specialReqInput.textContent.trim() : "";
+  const currentSpecialReq = specialReqInput ? specialReqInput.textContent : "";
   
   if (
     !currentEmail && !currentFname &&
@@ -392,7 +393,7 @@ function updateSummary() {
   const roomsCount = document.getElementById('rooms-count').value;
   
   // Find the selected room data to get the price
-  const selectedRoomData = rooms.find(r => r.name === window.selectedRoom) || roomsData[0];
+  const selectedRoomData = rooms.find(r => r.name === window.selectedRoom) || rooms[0];
   
   // 2. Calculate Nights
   let nights = 0;
@@ -462,12 +463,12 @@ function updateUI() {
   document.getElementById('conf-phone').innerText = displayPhoneNo;
   document.getElementById('conf-special-req').innerText = displaySpecialReq;
   
-  // optional global if you still need it
+  /* optional global if you still need it
   window.currentDisplayFname = displayFname;
   window.currentDisplayLname = displayLname;
   window.currentDisplayEmail = displayEmail;
   window.currentDisplayPhoneNo = displayPhoneNo;
-  window.currentDisplaySpecialReq = displaySpecialReq;
+  window.currentDisplaySpecialReq = displaySpecialReq;*/
 }
 
 function selectPayment(type) {

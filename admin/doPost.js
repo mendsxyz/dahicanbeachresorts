@@ -1,3 +1,4 @@
+/*
 function doPost(e) {
   try {
     const ss = SpreadsheetApp.openById(
@@ -38,4 +39,4 @@ function doPost(e) {
       }))
       .setMimeType(ContentService.MimeType.JSON);
   }
-}
+}*/
