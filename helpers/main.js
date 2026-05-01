@@ -284,6 +284,7 @@ function triggerRoomSelection(roomName) {
   
   const modal = document.getElementById('payment-warning-modal');
   modal.classList.remove('hidden');
+  modal.classList.add('flex');
   document.body.style.overflow = 'hidden'; // Lock scrolling
 }
 
@@ -303,11 +304,24 @@ function confirmAndProceed() {
 
 function saveGuestInfo() {
   // 1. Get the current email from the input right now
+  const fnameInput = document.querySelector('#step-3-content input[type="text"]#fname');
+  const lnameInput = document.querySelector('#step-3-content input[type="text"]#lname');
   const emailInput = document.querySelector('#step-3-content input[type="email"]');
-  const currentEmail = emailInput ? emailInput.value.trim() : "";
+  const phoneNoInput = document.querySelector('#step-3-content input[type="tel"]#phone_no');
+  const specialReqInput = document.querySelector("#step-3-content textarea#special_req");
   
-  if (!currentEmail) {
-    console.warn("Email field is empty, skipping save.");
+  const currentFname = fnameInput ? fnameInput.value.trim() : "";
+  const currentLname = lnameInput ? lnameInput.value.trim() : "";
+  const currentEmail = emailInput ? emailInput.value.trim() : "";
+  const currentPhoneNo = phoneNoInput ? phoneNoInput.value.trim() : "";
+  const currentSpecialReq = specialReqInput ? specialReqInput.textContent.trim() : "";
+  
+  if (
+    !currentEmail && !currentFname &&
+    !currentLname && !currentPhoneNo &&
+    !currentSpecialReq
+  ) {
+    console.warn("First name or other fields are empty, skipping save.");
     return;
   }
   
@@ -315,18 +329,23 @@ function saveGuestInfo() {
   let savedGuestInfo = JSON.parse(localStorage.getItem("guestInfo")) || [];
   
   const newInfo = {
-    fname: "",
-    lname: "",
+    fname: currentFname,
+    lname: currentLname,
     email: currentEmail,
-    phone: ""
+    phoneNo: currentPhoneNo,
+    specialReq: currentSpecialReq
   }
   
   // 3. Check if we already have an entry
   // Using [0] since we usually only care about the current booker
   if (savedGuestInfo.length > 0) {
+    savedGuestInfo[0].fname = currentFname;
+    savedGuestInfo[0].lname = currentLname;
     savedGuestInfo[0].email = currentEmail;
+    savedGuestInfo[0].phoneNo = currentPhoneNo;
+    savedGuestInfo[0].specialReq = currentSpecialReq;
   } else {
-    savedGuestInfo.push(currentEmail);
+    savedGuestInfo.push(newInfo);
   }
   
   // 4. Save it back
@@ -339,9 +358,29 @@ function setGuestInfo(data) {
   window.dispatchEvent(new Event("guestInfoUpdated"));
 }
 
+function getDisplayFname() {
+  return JSON.parse(localStorage.getItem("guestInfo") || "[]")
+    .find(obj => obj.fname)?.fname || "";
+}
+
+function getDisplayLname() {
+  return JSON.parse(localStorage.getItem("guestInfo") || "[]")
+    .find(obj => obj.lname)?.lname || "";
+}
+
 function getDisplayEmail() {
   return JSON.parse(localStorage.getItem("guestInfo") || "[]")
     .find(obj => obj.email)?.email || "";
+}
+
+function getDisplayPhoneNo() {
+  return JSON.parse(localStorage.getItem("guestInfo") || "[]")
+    .find(obj => obj.phoneNo)?.phoneNo || "";
+}
+
+function getDisplaySpecialReq() {
+  return JSON.parse(localStorage.getItem("guestInfo") || "[]")
+    .find(obj => obj.specialReq)?.specialReq || "";
 }
 
 function updateSummary() {
@@ -411,12 +450,24 @@ function updateSummary() {
 }
 
 function updateUI() {
+  const displayFname = getDisplayFname();
+  const displayLname = getDisplayLname();
   const displayEmail = getDisplayEmail();
+  const displayPhoneNo = getDisplayPhoneNo();
+  const displaySpecialReq = getDisplaySpecialReq();
   
+  document.getElementById('conf-fname').innerText = displayFname;
+  document.getElementById('conf-lname').innerText = displayLname;
   document.getElementById('conf-email').innerText = displayEmail;
+  document.getElementById('conf-phone').innerText = displayPhoneNo;
+  document.getElementById('conf-special-req').innerText = displaySpecialReq;
   
   // optional global if you still need it
+  window.currentDisplayFname = displayFname;
+  window.currentDisplayLname = displayLname;
   window.currentDisplayEmail = displayEmail;
+  window.currentDisplayPhoneNo = displayPhoneNo;
+  window.currentDisplaySpecialReq = displaySpecialReq;
 }
 
 function selectPayment(type) {
@@ -480,15 +531,18 @@ async function handleFinalSubmission() {
   btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Processing...';
   btn.disabled = true;
   
+  // Script Url
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ1GJ8nj0QXAm92GPdAgwxdoNPjOoUg1WfqzH2P8neX_NoA2X/exec";
+  
   try {
     // 1. Upload to Cloudinary
-    const formData = new FormData();
-    formData.append('file', fileInput.files[0]);
-    formData.append('upload_preset', UPLOAD_PRESET);
+    const formData1 = new FormData();
+    formData1.append('file', fileInput.files[0]);
+    formData1.append('upload_preset', UPLOAD_PRESET);
     
     const uploadRes = await fetch(CLOUDINARY_URL, {
       method: 'POST',
-      body: formData
+      body: formData1
     });
     const uploadData = await uploadRes.json();
     const proofUrl = uploadData.secure_url;
@@ -496,8 +550,10 @@ async function handleFinalSubmission() {
     // 2. Prepare Data for Google Sheets
     const bookingData = {
       bookingId: document.getElementById('conf-id').innerText,
-      guestName: null,
+      guestName: document.getElementById('conf-fname').innerText + " " + document.getElementById('conf-lname').innerText,
       guestEmail: document.getElementById('conf-email').innerText,
+      guestPhone: document.getElementById('conf-phone').innerText,
+      guestSpecialReq: document.getElementById('conf-special-req').innerText,
       room: document.getElementById('conf-room').innerText,
       checkin: document.getElementById('conf-in').innerText,
       checkout: document.getElementById('conf-out').innerText,
@@ -506,11 +562,37 @@ async function handleFinalSubmission() {
       timestamp: new Date().toLocaleString()
     };
     
-    console.log("Data ready for Sheets:", bookingData);
+    // console.log("Data ready for Sheets:", bookingData);
     
-    // Next Step: Send bookingData to Google Apps Script
-    // sendToGoogleSheets(bookingData); 
+    /* 3. Upload Data to Backend
+    const formData2 = new FormData();
+    formData2.append("timestamp", bookingData.timestamp);
+    formData2.append("booking_id", bookingData.bookingId);
+    formData2.append("guest_name", bookingData.guestName || "Anonymous");
+    formData2.append("guest_email", bookingData.guestEmail || "No email");
+    formData2.append("guest_phone_no", bookingData.guestPhoneNo || "No phone");
+    formData2.append("guest_special_req", bookingData.guestSpecialReq || "No special requests");
+    formData2.append("room", bookingData.room);
+    formData2.append("check_in", bookingData.checkin);
+    formData2.append("check_out", bookingData.checkout);
+    formData2.append("total", bookingData.total);
+    formData2.append("proof_url", bookingData.proofOfPayment);
     
+    const res = await fetch(scriptUrl, {
+      method: 'POST',
+      body: formData2,
+    });
+    
+    if (!res.ok) {
+      throw new Error(`HTTP Error: ${res.status}`);
+    }
+    
+    const data = await res.json();
+    
+    if (data.status === 'success') {
+      alert("Uploaded to backend!");
+    }
+    */
     alert("Payment Submitted Successfully! We will verify your booking shortly.");
     btn.innerHTML = 'Submitted Successfully';
     

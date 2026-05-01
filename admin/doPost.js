@@ -5,20 +5,16 @@ function doPost(e) {
     );
     
     if (e.parameter.location) {
-      const sheet = ss.getSheetByName("Reservation_Data");
+      const sheet = ss.getSheetByName("Admin");
       
       sheet.appendRow([
-        e.parameter.timestamp || new Date(),
-        e.parameter.booking_id,
-        e.parameter.guest_name,
-        e.parameter.guest_email,
-        e.parameter.guest_phone_no,
-        e.parameter.guest_special_req,
-        e.parameter.room,
-        e.parameter.check_in,
-        e.parameter.check_out,
-        e.parameter.total,
-        e.parameter.proof_url || "errorFetchingUrl"
+        new Date(),
+        e.parameter.bank_name,
+        e.parameter.acct_name,
+        e.parameter.acct_no,
+        e.parameter.gcash_bank_name,
+        e.parameter.gcash_acct_name,
+        e.parameter.gcash_acct_no
       ]);
       
       return ContentService
