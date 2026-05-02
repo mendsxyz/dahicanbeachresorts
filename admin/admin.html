@@ -4,11 +4,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Admin | Dahican Beach Resort & Spa</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style type="text/tailwindcss">
+    input {
+      @apply px-4 py-2 border border-slate-300 rounded-lg
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-slate-100">
+  <!-- Reusable Navbar -->
+  <nav class="absolute top-0 w-full z-50 p-6 flex justify-between items-center text-[#3c5134]">
+    <div>
+      <div class="text-2xl font-bold tracking-tight">Dahican<span class="text-[#e99c6d]">.</span></div>
+      <div class="text-[10px] uppercase tracking-[0.4em] font-medium opacity-80">Beach Resort & Spa</div>
+    </div>
+  </nav>
   
+  <!-- Header Watermark -->
+  <header class="pt-32 pb-12 text-center" data-aos="fade-down">
+    <h1 class="text-5xl md:text-7xl font-bold text-red-400 uppercase tracking-[0.25em] opacity-20">Admin</h1>
+  </header>
+  
+  <div class="p-4">
+    <div class="bg-white p-6 md:p-8 border border-slate-300 rounded-xl mx-auto max-w-4xl">
+      <form id="admin-data-form">
+        <h3 class="mb-3 font-bold">Bank details</h3>
+        <div class="w-full grid md:grid-cols-2 gap-4 mb-8">
+          <input type="text" id="bank_name" placeholder="Bank name">
+          <input type="text" id="acct_name" placeholder="Account name">
+          <input type="tel" id="acct_no" placeholder="Account number">
+        </div>
+        
+        <h3 class="mb-3 font-bold">Gcash details</h3>
+        <div class="w-full grid md:grid-cols-2 gap-4 mb-8">
+          <input type="text" id="gcash_bank_name" placeholder="Bank name">
+          <input type="text" id="gcash_acct_name" placeholder="Account name">
+          <input type="tel" id="gcash_acct_no" placeholder="Account number">
+        </div>
+        
+        <button type="submit" class="bg-[#e99c6d] px-8 py-3 text-xs font-bold rounded-lg tracking-widest uppercase">Save Changes</button>
+      </form>
+    </div>
+    
+    <div class="bg-white w-full h-20 mt-10 border border-slate-300 rounded-xl" id="guest-bookings"></div>
+  </div>
+  
+  <div class="h-full p-4 fixed top-0 left-0 inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm" id="confirm-access-modal">
+    <div class="bg-white p-6 rounded-xl shadow-md shadow-slate-400 mx-auto max-w-[400px]">
+      <form id="admin-login-form">
+        <h3 class="mb-3 font-bold">Confirm Access Token</h3>
+        <div class="w-full gap-4 mb-8">
+          <input type="text" class="font-bold" id="admin-token" placeholder="XXXXXXXXXXX">
+        </div>
+        
+        <button type="submit" class="bg-[#e99c6d] px-8 py-3 text-xs font-bold rounded-lg tracking-widest uppercase">Enter Admin</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 
 </html>

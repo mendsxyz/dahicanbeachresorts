@@ -445,8 +445,8 @@ function updateSummary() {
   document.getElementById('conf-total').innerText = formattedTotal;
   
   // Generates a random Booking ID if one hasn't been assigned yet
-  if (document.getElementById('conf-id').innerText === 'AUR-13935846' || !document.getElementById('conf-id').innerText) {
-    const randomID = "AUR-" + Math.floor(10000000 + Math.random() * 90000000);
+  if (document.getElementById('conf-id').innerText === 'DBR-13935846' || !document.getElementById('conf-id').innerText) {
+    const randomID = "DBR-" + Math.floor(10000000 + Math.random() * 90000000);
     document.getElementById('conf-id').innerText = randomID;
   }
 }

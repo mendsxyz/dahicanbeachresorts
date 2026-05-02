@@ -5,27 +5,45 @@ const gcashBankName = document.getElementById("gcash_bank_name");
 const gcashAcctName = document.getElementById("gcash_acct_name");
 const gcashAcctNo = document.getElementById("gcash_acct_no");
 
-async function fetchAdminData() {
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ1GJ8nj0QXAm92GPdAgwxdoNPjOoUg1WfqzH2P8neX_NoA2X/exec";
+const confirmAccessModal = document.getElementById("confirm-access-modal");
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ1GJ8nj0QXAm92GPdAgwxdoNPjOoUg1WfqzH2P8neX_NoA2X/exec";
+
+document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const tokenInput = document.getElementById('admin-token').value;
+  const btn = e.target.querySelector('button');
+  
+  btn.innerText = "Verifying...";
   
   try {
-    const res = await fetch(scriptUrl, {
-      method: "GET",
-    });
+    // We add a timestamp to prevent the browser from serving a cached error
+    const fetchUrl = `${SCRIPT_URL}?action=getAdmin&t=${Date.now()}`;
+    const response = await fetch(fetchUrl);
     
-    if (!res.ok) {
-      throw new Error(`HTTP Error: ${res.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    const data = await res.json();
+    const adminConfig = await response.json();
     
-    if (data.status === 'success') {
-      bankName.innerText = data[0].bank_name;
+    alert(adminConfig);
+    /*
+    // Check token (Assuming your column header is named "admin-token")
+    if (tokenInput === adminConfig['token']) {
+      localStorage.setItem('admin_config', JSON.stringify(adminConfig));
+      document.getElementById('confirm-access-modal').classList.add('hidden');
+      // loadBookings(); // Initialize the dashboard
+    } else {
+      alert("Invalid Admin Token");
+      btn.innerText = "Enter Admin";
     }
-  } catch (err) {
-    alert(err);
+    */
+  } catch (error) {
+    console.error("Fetch error:", error);
+    alert("Connection failed.");
   }
-}
+});
 
 async function saveAdminData() {
   try {

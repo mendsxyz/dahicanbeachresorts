@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <div>
+    <div style="width:100%; height: 150px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <img style="width: 100%; background-size: cover; position: absolute;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ5J_95j3M3eNYHXMeJh3pDIa6EuXiu0VsH51EvyA_zFztNRyKay1XSc8&s=10" alt="Dahican Beach Resort & Spa">
+    </div>
+    
+    <div style="background: #313131; color: lightgray; margin-top: 15px; padding: 20px;">
+      <h2 style="margin: 0">Dear ${name}</h2>
+      <p>We are pleased to confirm your reservation at Dahican Beach Resort. Your booking has been verified and confirmed.</p>
+      
+      <div style="background: #272727; margin-top: 20px; margin-bottom: 30px; padding: 30px 15px; border-radius: 10px">
+        <h4 style="margin: 0; color: #e99c6d">Booking Details</h4>
+        <div style="margin-top: 10px; width: 100%; border-top: 1px solid dimgray"></div>
+        <p>Booking ID: <span>${bookingId}</span></p>
+        <p>Room Type: <span>${room}</span></p>
+        <p>Check-in: <span>${checkin}</span></p>
+        <p>Check-out: <span>${checkout}</span></p>
+        <p>Total Amount: <span style="color: #e99c6d; font-weight: bold">${total}</span></p>
+      </div>
+      
+      <h4 style="margin: 0;">Important Information</h4>
+      <ul style="margin-bottom: 20px; line-height: 1.5; margin-top: 10px">
+        <li>Check-in time: 1:00pm</li>
+        <li>Check-out time 5:00pm</li>
+        <li>Please bring a valid id upon check-in</li>
+        <li>Free cancellation 72 hours before arrival</li>
+      </ul>
+      
+      <p style="margin-bottom: 20px; line-height: 1.5">
+        If you have any questions or need to make changes 
+        to your reservation, please reach out to us at 
+        <a style="color: dodgerblue" href="https://www.facebook.com/share/1Dfxvd5xLV/?mibextid=wwXIfr" target="_blank">reservations@dahicanbeachresorts</a>
+        or call dndbdjdndjdn. <br><br>
+        We look forward to welcoming you to Dahican Beach Resort!
+      </p>
+      
+      <p style="font-size: 10px; text-transform: uppercase; opacity: .6">
+        &copy; 2026 Dahican Beach Resorts. All Rights Reserved.
+      </p>
+    </div>
+    
+  </div>
+  
+  <script>
+    const nameCol = headers.indexOf("guest_name");
+    const bookingIdCol = headers.indexOf("booking_id");
+    const roomCol = headers.indexOf("room");
+    const checkinCol = headers.indexOf("check_in");
+    const checkoutCol = headers.indexOf("check_out");
+    const totalCol = headers.indexOf("total");
+    
+    const name = data[i][nameCol];
+    const bookingId = data[i][bookingIdCol];
+    const room = data[i][roomCol];
+    const checkin = data[i][checkinCol];
+    const checkout = data[i][checkoutCol];
+    const total = data[i][totalCol];
+  </script>
+</body>
+
+</html>
