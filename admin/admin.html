@@ -48,7 +48,10 @@
           <input type="tel" id="gcash_acct_no" placeholder="Account number">
         </div>
         
-        <button type="submit" class="bg-[#e99c6d] px-8 py-3 text-xs font-bold rounded-lg tracking-widest uppercase">Save Changes</button>
+        <div class="space-y-4">
+          <button type="submit" id="save-button" class="bg-[#e99c6d] px-8 py-3 text-xs font-bold rounded-lg tracking-widest uppercase">Save Changes</button>
+          <button type="button" class="bg-red-400 px-8 py-3 text-xs font-bold rounded-lg tracking-widest uppercase" onclick="restartSession()">Restart Session</button>
+        </div>
       </form>
     </div>
     

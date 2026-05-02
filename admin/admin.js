@@ -11,7 +11,7 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwjWxIK1Vc_n-rUCdWFQ
 
 document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const tokenInput = document.getElementById('admin-token').value;
+  const tokenInput = document.getElementById('admin-token').value.trim();
   const btn = e.target.querySelector('button');
   
   btn.innerText = "Verifying...";
@@ -27,37 +27,49 @@ document.getElementById('admin-login-form').addEventListener('submit', async (e)
     
     const adminConfig = await response.json();
     
-    alert(adminConfig);
-    /*
+    // alert(adminConfig.token);
+    
     // Check token (Assuming your column header is named "admin-token")
-    if (tokenInput === adminConfig['token']) {
+    if (tokenInput === adminConfig.token) {
       localStorage.setItem('admin_config', JSON.stringify(adminConfig));
       document.getElementById('confirm-access-modal').classList.add('hidden');
+      
+      populateFields();
       // loadBookings(); // Initialize the dashboard
     } else {
       alert("Invalid Admin Token");
       btn.innerText = "Enter Admin";
     }
-    */
   } catch (error) {
     console.error("Fetch error:", error);
     alert("Connection failed.");
   }
 });
 
-async function saveAdminData() {
+document.getElementById("admin-data-form")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  const btn = e.target.querySelector('#save-button');
+  
+  saveAdminData(btn);
+});
+
+async function saveAdminData(btn) {
+  btn.innerText = "Saving...";
+  
   try {
     // Upload Data to Backend
     const formData = new FormData();
+    formData.append("token", "Dahican$30972_");
     formData.append("timestamp", new Date());
-    formData.append("bank_name", bankName.innerText);
-    formData.append("acct_name", acctName.innerText);
-    formData.append("acct_no", acctNo.innerText);
-    formData.append("gcash_bank_name", gcashBankName.innerText);
-    formData.append("gcash_acct_name", gcashAcctName.innerText);
-    formData.append("gcash_acct_no", gcashAcctNo.innerText);
+    formData.append("bank_name", bankName.value);
+    formData.append("acct_name", acctName.value);
+    formData.append("acct_no", "*" + acctNo.value);
+    formData.append("gcash_bank_name", gcashBankName.value);
+    formData.append("gcash_acct_name", gcashAcctName.value);
+    formData.append("gcash_acct_no", "*" + gcashAcctNo.value);
     
-    const res = await fetch(scriptUrl, {
+    const res = await fetch(SCRIPT_URL, {
       method: 'POST',
       body: formData,
     });
@@ -70,8 +82,30 @@ async function saveAdminData() {
     
     if (data.status === 'success') {
       alert("Admin Data Saved!");
+      btn.innerText = "Save Changes";
     }
   } catch (err) {
     alert(err);
   }
 }
+
+function populateFields() {
+  const adminData = JSON.parse(localStorage.getItem("admin_config"));
+  
+  if (adminData) {
+    const data = adminData;
+    bankName.value = data.bank_name;
+    acctName.value = data.acct_name;
+    acctNo.value = data.acct_no;
+    gcashBankName.value = data.gcash_bank_name;
+    gcashAcctName.value = data.gcash_acct_name;
+    gcashAcctNo.value = data.gcash_acct_no;
+  }
+}
+
+function restartSession() {
+  localStorage.removeItem("admin_config");
+  location.reload();
+}
+
+populateFields();
