@@ -226,6 +226,7 @@ function updateStepper(activeStep) {
     
     if (stepNum === 3) {
       saveGuestInfo();
+      populatePaymentDetails();
     }
   });
 }
@@ -628,4 +629,27 @@ async function sendToBackend(data, btnEl) {
       paymentStatusDesc.innerText = "Your proof of payment and booking details are currently being verified, and a receipt will be sent to your email address soon.";
     }
   }
+}
+
+async function populatePaymentDetails() {
+  try {
+    const fetchUrl = `${scriptUrl}?action=getAdmin&t=${Date.now()}`;
+    const response = await fetch(fetchUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const adminConfig = await response.json();
+    
+    const bankName = document.getElementById("bank_name");
+    
+    bankName.innerText = adminConfig.bank_name;
+  } catch (err) {
+    
+  }
+}
+
+function goToBooking() {
+  window.location.href = "../pages/bookings.html";
 }
