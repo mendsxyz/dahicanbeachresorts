@@ -643,10 +643,22 @@ async function populatePaymentDetails() {
     const adminConfig = await response.json();
     
     const bankName = document.getElementById("bank_name");
+    const acctName = document.getElementById("acct_name");
+    const acctNo = document.getElementById("acct_no");
+    
+    const gcashBankName = document.getElementById("gcash_bank_name");
+    const gcashAcctName = document.getElementById("gcash_acct_name");
+    const gcashAcctNo = document.getElementById("gcash_acct_no");
     
     bankName.innerText = adminConfig.bank_name;
-  } catch (err) {
+    acctName.innerText = adminConfig.acct_name;
+    acctNo.innerText = adminConfig.acct_no;
     
+    gcashBankName.innerText = adminConfig.gcash_bank_name;
+    gcashAcctName.innerText = adminConfig.gcash_acct_name;
+    gcashAcctNo.innerText = adminConfig.gcash_acct_no;
+  } catch (err) {
+    alert(err);
   }
 }
 
