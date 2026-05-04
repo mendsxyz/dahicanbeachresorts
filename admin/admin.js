@@ -64,10 +64,10 @@ async function saveAdminData(btn) {
     formData.append("timestamp", new Date());
     formData.append("bank_name", bankName.value);
     formData.append("acct_name", acctName.value);
-    formData.append("acct_no", "*" + acctNo.value);
+    formData.append("acct_no", "'" + acctNo.value);
     formData.append("gcash_bank_name", gcashBankName.value);
     formData.append("gcash_acct_name", gcashAcctName.value);
-    formData.append("gcash_acct_no", "*" + gcashAcctNo.value);
+    formData.append("gcash_acct_no", "'" + gcashAcctNo.value);
     
     const res = await fetch(SCRIPT_URL, {
       method: 'POST',

@@ -228,6 +228,11 @@ function updateStepper(activeStep) {
       saveGuestInfo();
       populatePaymentDetails();
     }
+    
+    if (stepNum === 4) {
+      selectedPaymentDetails();
+      updateUI();
+    }
   });
 }
 
@@ -385,6 +390,50 @@ function getDisplaySpecialReq() {
     .find(obj => obj.specialReq)?.specialReq || "";
 }
 
+function getFBankName() {
+  return JSON.parse(localStorage.getItem("selectedPaymentDetails") || "[]")
+    .find(obj => obj.bank_name)?.bank_name || "";
+}
+
+function getFAcctName() {
+  return JSON.parse(localStorage.getItem("selectedPaymentDetails") || "[]")
+    .find(obj => obj.acct_name)?.acct_name || "";
+}
+
+function getFAcctNo() {
+  return JSON.parse(localStorage.getItem("selectedPaymentDetails") || "[]")
+    .find(obj => obj.acct_no)?.acct_no || "";
+}
+
+function selectedPaymentDetails() {
+  const root1 = document.getElementById("bank_card");
+  const root2 = document.getElementById("gcash_card");
+  
+  const selected1 = {
+    bank_name: root1.querySelector("#bank_name").innerText,
+    acct_name: root1.querySelector("#acct_name").innerText,
+    acct_no: root1.querySelector("#acct_no").innerText
+  }
+  
+  const selected2 = {
+    bank_name: root2.querySelector("#gcash_bank_name").innerText,
+    acct_name: root2.querySelector("#gcash_acct_name").innerText,
+    acct_no: root2.querySelector("#gcash_acct_no").innerText
+  }
+  
+  localStorage.removeItem("selectedPaymentDetails");
+  
+  if (root1.classList.contains("hidden")) {
+    const selected = JSON.parse(localStorage.getItem("selectedPaymentDetails")) || [];
+    selected.push(selected2);
+    localStorage.setItem("selectedPaymentDetails", JSON.stringify(selected));
+  } else {
+    const selected = JSON.parse(localStorage.getItem("selectedPaymentDetails")) || [];
+    selected.push(selected1);
+    localStorage.setItem("selectedPaymentDetails", JSON.stringify(selected));
+  }
+}
+
 function updateSummary() {
   // 1. Get Values from Step 1 & 2
   const checkinVal = document.getElementById('checkin').value;
@@ -459,11 +508,19 @@ function updateUI() {
   const displayPhoneNo = getDisplayPhoneNo();
   const displaySpecialReq = getDisplaySpecialReq();
   
+  const fBankName = getFBankName();
+  const fAcctName = getFAcctName();
+  const fAcctNo = getFAcctNo();
+  
   document.getElementById('conf-fname').innerText = displayFname;
   document.getElementById('conf-lname').innerText = displayLname;
   document.getElementById('conf-email').innerText = displayEmail;
   document.getElementById('conf-phone').innerText = displayPhoneNo;
   document.getElementById('conf-special-req').innerText = displaySpecialReq;
+  
+  document.getElementById("fbank_name").innerText = fBankName;
+  document.getElementById("facct_name").innerText = fAcctName;
+  document.getElementById("facct_no").innerText = fAcctNo;
   
   /* optional global if you still need it
   window.currentDisplayFname = displayFname;
@@ -497,10 +554,16 @@ function selectPayment(type) {
 }
 
 function checkRefNumber() {
-  localStorage.setItem("bankRefNo", document.getElementById("bank_ref_no").value.trim());
+  const refNo = "bank-" + document.getElementById("bank_ref_no").value.trim() ?? "" + 
+  "gcash-" + document.getElementById("gcash_ref_no").value.trim() ?? "";
+  
+  localStorage.setItem("refNo", refNo);
   
   setTimeout(() => {
-    if (document.getElementById("bank_ref_no").value === "") {
+    if (
+      document.getElementById("bank_ref_no").value === "" &&
+      document.getElementById("gcash_ref_no").value === ""
+    ) {
       alert("error")
       return;
     }
@@ -660,6 +723,10 @@ async function populatePaymentDetails() {
   } catch (err) {
     alert(err);
   }
+}
+
+function populateSelectedDetails() {
+  
 }
 
 function goToBooking() {
