@@ -459,7 +459,16 @@ function updateSummary() {
   const formattedTotal = "₱" + totalAmount.toLocaleString();
   
   // 4. Formatting Dates for the UI (e.g., Fri, May 1, 2026)
-  const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+  // const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+  const dateOptions = {
+    year: 'numeric',
+    weekday: 'short',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  };
   const checkinDisplay = checkinVal ? new Date(checkinVal).toLocaleDateString('en-US', dateOptions) : '---';
   const checkoutDisplay = checkoutVal ? new Date(checkoutVal).toLocaleDateString('en-US', dateOptions) : '---';
   
@@ -554,8 +563,8 @@ function selectPayment(type) {
 }
 
 function checkRefNumber() {
-  const refNo = "bank-" + document.getElementById("bank_ref_no").value.trim() ?? "" + 
-  "gcash-" + document.getElementById("gcash_ref_no").value.trim() ?? "";
+  const refNo = "bank-" + document.getElementById("bank_ref_no").value.trim() ?? "" +
+    "gcash-" + document.getElementById("gcash_ref_no").value.trim() ?? "";
   
   localStorage.setItem("refNo", refNo);
   
