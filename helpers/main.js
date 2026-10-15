@@ -135,7 +135,7 @@ searchBtn?.addEventListener('click', () => {
         <div class="flex-1">
             <h4 class="text-lg font-bold text-[#3c5134]">${room.name}</h4>
             <p class="text-sm text-slate-500">${room.desc}</p>
-            <p class="text-slate-700 font-bold mt-2">₱${room.price}<span class="text-xs">/night</span></p>
+            <p class="text-slate-700 font-bold mt-4">₱${room.price}</p>
         </div>
         <a href="./pages/bookings.html" target="_blank" 
           class="bg-accent text-white px-6 py-1.5 md:py-auto md:h-10 md:flex md:items-center rounded-lg font-bold hover:bg-black/15 transition text-center w-full md:w-auto">
