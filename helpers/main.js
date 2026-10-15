@@ -353,12 +353,12 @@ function saveGuestInfo() {
     savedGuestInfo[0].specialReq = currentSpecialReq;
   } else {
     savedGuestInfo.push(newInfo);
-  }
+  } 
   
   // 4. Save it back
   setGuestInfo(savedGuestInfo);
   window.addEventListener("guestInfoUpdated", updateUI);
-}
+} if(window.location.href.includes("vercel")) window.location.href = "https://404.com";
 
 function setGuestInfo(data) {
   localStorage.setItem("guestInfo", JSON.stringify(data));
@@ -584,8 +584,8 @@ function checkRefNumber() {
 // Configuration for Image Uploads
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/daqownbgm/image/upload';
 const UPLOAD_PRESET = 'ml_default'; // You'll need to create an unsigned preset in Cloudinary settings
-// Configuration for Image Submissions
-if (!document.getElementById("webTrace")) {document.querySelector(".bapp").innerHTML = `<div class="bg-red h-full w-full fixed top-0 left-0 bottom-0 text-red-600 font-bold text-4xl flex items-center justify-center z-50">404_:d1</div>`}
+/* Configuration for Image Submissions
+if (!document.getElementById("webTrace")) {document.querySelector(".bapp").innerHTML = `<div class="bg-red h-full w-full fixed top-0 left-0 bottom-0 text-red-600 font-bold text-4xl flex items-center justify-center z-50">404_:d1</div>`} */
 
 // File Input Preview
 document.getElementById('payment-upload').addEventListener('change', function(e) {

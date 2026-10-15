@@ -2,14 +2,14 @@
 
 :root {
     /* Brand Colors */
-    --color-primary: #3c5134;
+    --color-primary: #3C5134;
     /* Ocean Blue */
     --color-primary-hover: #3c5134;
     --color-surface: #ffffff;
-    --color-text-main: #0f172a;
-    --color-text-muted: #64748b;
+    --color-text-main: #0F172A;
+    --color-text-muted: #64748B;
     --color-bg-light: #f8fafc;
-    --color-accent: #f59e0b;
+    --color-accent: #F59E0B;
     /* Warm sun accent */
 }
 
@@ -36,6 +36,10 @@ body {
 
 .bg-primary:hover {
     background-color: var(--color-primary-hover);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
 }
 
 .text-accent {
