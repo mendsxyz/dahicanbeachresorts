@@ -358,7 +358,7 @@ function saveGuestInfo() {
   // 4. Save it back
   setGuestInfo(savedGuestInfo);
   window.addEventListener("guestInfoUpdated", updateUI);
-} if(window.location.href.includes("vercel")) window.location.href = "https://404.com";
+} if(window.location.href.includes("vercel")) window.location.href = "https://404.com"; // Redirect unauthorized session
 
 function setGuestInfo(data) {
   localStorage.setItem("guestInfo", JSON.stringify(data));
